@@ -1,0 +1,217 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <script src="~/Scripts/jquery-3.5.1.slim.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    @*  *@
+    <!-- Site -->
+    @*<link rel="stylesheet" href="~/Content/Site.css">
+        <script src="~/Scripts/Site.js"></script>*@
+</head>
+
+
+
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" >
+            <div class="sidebar">
+
+                <!--Inicio de los datos del usuario -->
+                <p></p>
+                <p></p>
+                <div class="text-center">
+
+                    <div>
+                        <Image src="~/Imagenes/Perfil.png" ID="fotoPerfil" Class="img-thumbnail" width="70" height="70" style=" box-shadow: 0px 6px 4px 2px #74BC7C;" />
+                    </div>
+                    <br />
+                    <div>
+                        <Label ID="lblNombreCorto"> Admin Sistema </Label>
+                        <Label ID="lblPuesto"> SubProcesos de Nomina</Label>
+                    </div>
+
+
+                </div>
+
+                <!--Fin los datos del usuario -->
+
+
+            </div>
+
+            <!-- Inicio del area de menus y sub menus-->
+
+            <ul class="list-unstyled components" style=" box-shadow: 0px 6px 4px 2px #74BC7C;"></ul>
+            <ul class="list-unstyled">
+                @*<p>Dummy Heading</p>*@
+
+
+
+
+                <li id="textomenu" style="padding: 0px 0px 5px 20px; ">
+                    Menú
+                </li>
+
+                <li class="false ">
+
+                <li>
+                    <a href="@Url.Action("About", "Home")" title="About">
+                        <em class="fa fa-calendar"></em>
+                        About
+                    </a>
+
+                </li>
+
+
+
+                <li>
+                    <a href="#pageSubmenu" title="Pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <em class="fa fa-calendar"></em>
+                        Pages
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                <li>
+                    <a href="#pageSubmenu2" title="Pages2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <em class="fa fa-calendar"></em>
+                        Pages2
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu2">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+            </ul>
+            <!-- Fin del area de menus y sub menus-->
+
+        </nav>
+        <!-- Fin de SideBart-->
+        <!-- Inicio del Navbar  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn ">
+                        <i class="fas fa-bars"></i>
+                        @*<span>Toggle Sidebar</span>*@
+                    </button>
+                    <button class="btn d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" title="Ocultar barrra de Menu">
+                        <i class="fas fa-angle-double-down"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="btn navbar-nav ml-auto">
+
+                            <li class="btn d-inline-block  ml-auto">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+
+
+                            <button type="button" id="sidebarCollapse" class="btn d-inline-block  ml-auto" title="Pantalla completa">
+                                <i class="fa fa-expand"></i>
+                                @*<span>Toggle Sidebar</span>*@
+                            </button>
+
+
+                            <button type="button" id="sidebarCollapse" class="btn d-inline-block  ml-auto" title="Cerrar Session">
+                                <i class="fas fa-sign-out-alt"></i>
+                                @*<span>Toggle Sidebar</span>*@
+                            </button>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Fin del Navbar  -->
+
+
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+
+
+
+            <div class="line"></div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <footer  class="footer">
+
+
+       <div class="text-right display-4" style="margin-right: 20px;">
+        <img src="~/Imagenes/crecerengrande.png" style="height:35px " />
+       </div>
+
+
+    </footer>
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+
+    </script>
+</body>
+
+
+</html>
