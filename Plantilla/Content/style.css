@@ -26,11 +26,11 @@ a:focus {
 }
 
 .navbar {
-    padding: 20px 5px;
+    padding: 13px 5px;
     background: #74BC7C;
     border: outset;
     border-radius: 3;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   /*  box-shadow: 5px 5px 5px #74BC7C ;*/
 }
@@ -45,7 +45,7 @@ a:focus {
     width: 100%;
     height: 1px;
     border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
+    margin: 13px 0;
 }
 
 /* ---------------------------------------------------
@@ -59,8 +59,8 @@ a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 240px;
+    max-width: 240px;
     background: #fff;
     color: #808080;
     transition: all 0.3s;
@@ -199,6 +199,11 @@ a.article:hover {
 
 
 
+
+.nombreSistema {
+    margin-right: 40px;
+    height: 30px;
+}
 
 
 

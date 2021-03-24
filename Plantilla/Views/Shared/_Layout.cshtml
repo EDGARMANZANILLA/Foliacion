@@ -28,23 +28,24 @@
 <body>
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar" >
-            <div class="sidebar">
+        <nav id="sidebar">
+            <div class="sidebar" style="margin-bottom: 60px;">
 
                 <!--Inicio de los datos del usuario -->
                 <p></p>
                 <p></p>
+
+
                 <div class="text-center">
+                    <Image src="~/Imagenes/Perfil.png" ID="fotoPerfil" Class="img-thumbnail" width="60" height="60" style=" box-shadow: 0px 6px 4px 2px #74BC7C; margin-bottom:15px;" />
+
 
                     <div>
-                        <Image src="~/Imagenes/Perfil.png" ID="fotoPerfil" Class="img-thumbnail" width="70" height="70" style=" box-shadow: 0px 6px 4px 2px #74BC7C;" />
-                    </div>
-                    <br />
-                    <div>
-                        <Label ID="lblNombreCorto"> Admin Sistema </Label>
-                        <Label ID="lblPuesto"> SubProcesos de Nomina</Label>
-                    </div>
 
+                        <Label ID="lblNombreCorto" style="margin-bottom: 0px;"> Admin Sistema </Label>
+                        <br />
+                        <Label ID="lblPuesto"> E.Manzanilla</Label>
+                    </div>
 
                 </div>
 
@@ -53,12 +54,11 @@
 
             </div>
 
-            <!-- Inicio del area de menus y sub menus-->
 
-            <ul class="list-unstyled components" style=" box-shadow: 0px 6px 4px 2px #74BC7C;"></ul>
+            <!-- Inicio del area de menus y sub menus-->
+            <!--           <ul class="list-unstyled components" style=" box-shadow: 0px 6px 4px 2px #74BC7C;"></ul>   -->
             <ul class="list-unstyled">
                 @*<p>Dummy Heading</p>*@
-
 
 
 
@@ -126,6 +126,7 @@
 
         </nav>
         <!-- Fin de SideBart-->
+
         <!-- Inicio del Navbar  -->
         <div id="content">
 
@@ -167,14 +168,28 @@
             </nav>
             <!-- Fin del Navbar  -->
 
+            <!-- Inicio del Nombre del sistema-->
+
+          
+                        
+                        <div class="text-right nombreSistema" style="margin-bottom: 0px;">
+                         
+                            <em class="fa fa-cube" style="font-size: 1.4em; color:#74BC7C;"   >&nbsp Foliación v01</em>
+                        </div>
+               
+        
+            <!-- Fin del Nombre del sistema-->
+
+
+
+            <div class="line"></div>
+
 
             <div class="container-fluid">
                 @RenderBody()
             </div>
 
 
-
-            <div class="line"></div>
 
 
 
@@ -191,7 +206,7 @@
 
 
        <div class="text-right display-4" style="margin-right: 20px;">
-        <img src="~/Imagenes/crecerengrande.png" style="height:35px " />
+        <img src="~/Imagenes/crecerengrande.png" style="height:60px " />
        </div>
 
 
