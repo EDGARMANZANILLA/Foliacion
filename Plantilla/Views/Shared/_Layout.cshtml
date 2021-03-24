@@ -68,53 +68,44 @@
 
                 <li class="false ">
 
-                <li>
-                    <a href="@Url.Action("About", "Home")" title="About">
-                        <em class="fa fa-calendar"></em>
-                        About
-                    </a>
-
-                </li>
-
-
-
-                <li>
-                    <a href="#pageSubmenu" title="Pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <em class="fa fa-calendar"></em>
-                        ejemplo de href
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="@Url.Action("Index", "Home")">Index</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Contact", "Home")">Contact</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-
-
 
                 <li>
                     <a href="#pageSubmenu2" title="Pages2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <em class="fa fa-calendar"></em>
-                        Pages2
+                        <em class="fa fa-money-check-alt"></em>  
+                        FOLIACIÓN
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a href="#">Inventario</a>
                         </li>
                         <li>
-                            <a href="#">Page 2</a>
+                            <a href="#">Foliar</a>
                         </li>
                         <li>
-                            <a href="#">Page 3</a>
+                            <a href="#">Refoliar</a>
                         </li>
                     </ul>
                 </li>
+                
+
+                <li>
+                    <a href="#pageSubmenu" title="Pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <em class="fas fa-search-dollar"></em>
+                        BUSCADOR
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="@Url.Action("Index", "Home")">Cheque</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Contact", "Home")">Cheques Cancelados</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
 
 
 
@@ -167,17 +158,33 @@
                 </div>
             </nav>
             <!-- Fin del Navbar  -->
-
             <!-- Inicio del Nombre del sistema-->
 
-          
-                        
-                        <div class="text-right nombreSistema" style="margin-bottom: 0px;">
-                         
-                            <em class="fa fa-cube" style="font-size: 1.4em; color:#74BC7C;"   >&nbsp Foliación v01</em>
-                        </div>
-               
-        
+
+           
+
+
+            <section>
+                <div class="row">
+                    <div class="col" >
+                        <p class="fa fa-cube " style="margin-left: 30px; font-size: 1.4em;">&nbsp Foliación v01</p>
+                    </div>
+
+                    <div class="col" style="text-align: right;">
+                    
+                        <p class="fa fa-cube" style="margin-right:30px; font-size: 1.4em; color: #74BC7C;">&nbsp Foliación v01</p>
+
+                    </div>
+                </div>
+            </section>
+
+            
+            @*<div class="row-cols-6 nombreSistema" style="margin-bottom: 0px;">
+
+                <em class="fa fa-cube" style="font-size: 1.4em; color:#74BC7C;">&nbsp Foliación v01</em>
+            </div>*@
+
+
             <!-- Fin del Nombre del sistema-->
 
 
@@ -189,7 +196,7 @@
                 @RenderBody()
             </div>
 
-
+           
 
 
 
@@ -202,12 +209,16 @@
 
 
 
-    <footer  class="footer">
+    <footer class="footer">
 
 
-       <div class="text-right display-4" style="margin-right: 20px;">
-        <img src="~/Imagenes/crecerengrande.png" style="height:60px " />
-       </div>
+   
+
+
+
+        <div class="text-right display-4" style="margin-right: 20px;">
+            <img src="~/Imagenes/crecerengrande.png" style="height:60px " />
+        </div>
 
 
     </footer>
