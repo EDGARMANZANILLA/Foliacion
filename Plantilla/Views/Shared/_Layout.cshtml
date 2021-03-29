@@ -76,13 +76,13 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
                         <li>
-                            <a href="#">Inventario</a>
+                            <a href="@Url.Action("Inventario", "Foliacion")">Inventario</a>
                         </li>
                         <li>
-                            <a href="#">Foliar</a>
+                            <a href="@Url.Action("Foliar", "Foliacion")">Foliar</a>
                         </li>
                         <li>
-                            <a href="#">Refoliar</a>
+                            <a href="@Url.Action("Refoliar", "Foliacion")">Refoliar</a>
                         </li>
                     </ul>
                 </li>
@@ -95,10 +95,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="@Url.Action("Index", "Home")">Cheque</a>
+                            <a href="@Url.Action("Cheques", "Buscador")">Cheque</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Contact", "Home")">Cheques Cancelados</a>
+                            <a href="@Url.Action("ChequesCancelados", "Buscador")">Cheques Cancelados</a>
                         </li>
 
                     </ul>
@@ -167,7 +167,7 @@
             <section>
                 <div class="row">
                     <div class="col" >
-                        <p class="fa fa-cube" style="margin-left: 30px; font-size: 1.4em;">@ViewBag.Title</p>
+                        <p class="@ViewBag.Icono" style="margin-left: 30px; font-size: 1.4em;">&nbsp @ViewBag.Title</p>
                     </div>
 
                     <div class="col" style="text-align: right;">

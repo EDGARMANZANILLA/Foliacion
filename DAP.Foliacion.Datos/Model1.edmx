@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FoliacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tbl_AsignacionInventario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBanco" Type="int" Nullable="false" />
+          <Property Name="IdNombrePersona" Type="int" Nullable="false" />
+          <Property Name="FoliosAsignados" Type="int" Nullable="false" />
+          <Property Name="FolioInicial" Type="int" Nullable="false" />
+          <Property Name="FolioFinal" Type="int" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_CuentasBancarias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreBanco" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Abreviatura" Type="nvarchar" MaxLength="5" />
+          <Property Name="Cuenta" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="IdTipoPagoCuenta" Type="int" Nullable="false" />
+          <Property Name="EstadoCuenta" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="date" Nullable="false" />
+          <Property Name="FechaBaja" Type="date" />
+        </EntityType>
+        <EntityType Name="Tbl_Inventario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCuentaBancaria" Type="int" Nullable="false" />
+          <Property Name="FormasDisponibles" Type="int" Nullable="false" />
+          <Property Name="UltimoFolioInventario" Type="int" Nullable="false" />
+          <Property Name="UltimoFolioQuincena" Type="int" Nullable="false" />
+          <Property Name="EstimadoMeses" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_NombresPersonal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombrePersonal" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_TipoPagoCuenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoPago" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias">
+          <End Role="Tbl_CuentasBancarias" Type="Self.Tbl_CuentasBancarias" Multiplicity="1" />
+          <End Role="Tbl_AsignacionInventario" Type="Self.Tbl_AsignacionInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_CuentasBancarias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_AsignacionInventario">
+              <PropertyRef Name="IdBanco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AsignacionInventario_Tbl_NombresPersonal">
+          <End Role="Tbl_NombresPersonal" Type="Self.Tbl_NombresPersonal" Multiplicity="1" />
+          <End Role="Tbl_AsignacionInventario" Type="Self.Tbl_AsignacionInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_NombresPersonal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_AsignacionInventario">
+              <PropertyRef Name="IdNombrePersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta">
+          <End Role="Tbl_TipoPagoCuenta" Type="Self.Tbl_TipoPagoCuenta" Multiplicity="1" />
+          <End Role="Tbl_CuentasBancarias" Type="Self.Tbl_CuentasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_TipoPagoCuenta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_CuentasBancarias">
+              <PropertyRef Name="IdTipoPagoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Inventario_Tbl_CuentasBancarias">
+          <End Role="Tbl_CuentasBancarias" Type="Self.Tbl_CuentasBancarias" Multiplicity="1" />
+          <End Role="Tbl_Inventario" Type="Self.Tbl_Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_CuentasBancarias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Inventario">
+              <PropertyRef Name="IdCuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoliacionModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_AsignacionInventario" EntityType="Self.Tbl_AsignacionInventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_CuentasBancarias" EntityType="Self.Tbl_CuentasBancarias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Inventario" EntityType="Self.Tbl_Inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_NombresPersonal" EntityType="Self.Tbl_NombresPersonal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_TipoPagoCuenta" EntityType="Self.Tbl_TipoPagoCuenta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias" Association="Self.FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias">
+            <End Role="Tbl_CuentasBancarias" EntitySet="Tbl_CuentasBancarias" />
+            <End Role="Tbl_AsignacionInventario" EntitySet="Tbl_AsignacionInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AsignacionInventario_Tbl_NombresPersonal" Association="Self.FK_Tbl_AsignacionInventario_Tbl_NombresPersonal">
+            <End Role="Tbl_NombresPersonal" EntitySet="Tbl_NombresPersonal" />
+            <End Role="Tbl_AsignacionInventario" EntitySet="Tbl_AsignacionInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta" Association="Self.FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta">
+            <End Role="Tbl_TipoPagoCuenta" EntitySet="Tbl_TipoPagoCuenta" />
+            <End Role="Tbl_CuentasBancarias" EntitySet="Tbl_CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Inventario_Tbl_CuentasBancarias" Association="Self.FK_Tbl_Inventario_Tbl_CuentasBancarias">
+            <End Role="Tbl_CuentasBancarias" EntitySet="Tbl_CuentasBancarias" />
+            <End Role="Tbl_Inventario" EntitySet="Tbl_Inventario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoliacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tbl_AsignacionInventario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdBanco" Type="Int32" Nullable="false" />
+          <Property Name="IdNombrePersona" Type="Int32" Nullable="false" />
+          <Property Name="FoliosAsignados" Type="Int32" Nullable="false" />
+          <Property Name="FolioInicial" Type="Int32" Nullable="false" />
+          <Property Name="FolioFinal" Type="Int32" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Tbl_CuentasBancarias" Relationship="Self.FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias" FromRole="Tbl_AsignacionInventario" ToRole="Tbl_CuentasBancarias" />
+          <NavigationProperty Name="Tbl_NombresPersonal" Relationship="Self.FK_Tbl_AsignacionInventario_Tbl_NombresPersonal" FromRole="Tbl_AsignacionInventario" ToRole="Tbl_NombresPersonal" />
+        </EntityType>
+        <EntityType Name="Tbl_CuentasBancarias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreBanco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Cuenta" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdTipoPagoCuenta" Type="Int32" Nullable="false" />
+          <Property Name="EstadoCuenta" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Tbl_AsignacionInventario" Relationship="Self.FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias" FromRole="Tbl_CuentasBancarias" ToRole="Tbl_AsignacionInventario" />
+          <NavigationProperty Name="Tbl_TipoPagoCuenta" Relationship="Self.FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta" FromRole="Tbl_CuentasBancarias" ToRole="Tbl_TipoPagoCuenta" />
+          <NavigationProperty Name="Tbl_Inventario" Relationship="Self.FK_Tbl_Inventario_Tbl_CuentasBancarias" FromRole="Tbl_CuentasBancarias" ToRole="Tbl_Inventario" />
+        </EntityType>
+        <EntityType Name="Tbl_Inventario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCuentaBancaria" Type="Int32" Nullable="false" />
+          <Property Name="FormasDisponibles" Type="Int32" Nullable="false" />
+          <Property Name="UltimoFolioInventario" Type="Int32" Nullable="false" />
+          <Property Name="UltimoFolioQuincena" Type="Int32" Nullable="false" />
+          <Property Name="EstimadoMeses" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_CuentasBancarias" Relationship="Self.FK_Tbl_Inventario_Tbl_CuentasBancarias" FromRole="Tbl_Inventario" ToRole="Tbl_CuentasBancarias" />
+        </EntityType>
+        <EntityType Name="Tbl_NombresPersonal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombrePersonal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_AsignacionInventario" Relationship="Self.FK_Tbl_AsignacionInventario_Tbl_NombresPersonal" FromRole="Tbl_NombresPersonal" ToRole="Tbl_AsignacionInventario" />
+        </EntityType>
+        <EntityType Name="Tbl_TipoPagoCuenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tbl_CuentasBancarias" Relationship="Self.FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta" FromRole="Tbl_TipoPagoCuenta" ToRole="Tbl_CuentasBancarias" />
+        </EntityType>
+        <Association Name="FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias">
+          <End Role="Tbl_CuentasBancarias" Type="Self.Tbl_CuentasBancarias" Multiplicity="1" />
+          <End Role="Tbl_AsignacionInventario" Type="Self.Tbl_AsignacionInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_CuentasBancarias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_AsignacionInventario">
+              <PropertyRef Name="IdBanco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AsignacionInventario_Tbl_NombresPersonal">
+          <End Role="Tbl_NombresPersonal" Type="Self.Tbl_NombresPersonal" Multiplicity="1" />
+          <End Role="Tbl_AsignacionInventario" Type="Self.Tbl_AsignacionInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_NombresPersonal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_AsignacionInventario">
+              <PropertyRef Name="IdNombrePersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta">
+          <End Role="Tbl_TipoPagoCuenta" Type="Self.Tbl_TipoPagoCuenta" Multiplicity="1" />
+          <End Role="Tbl_CuentasBancarias" Type="Self.Tbl_CuentasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_TipoPagoCuenta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_CuentasBancarias">
+              <PropertyRef Name="IdTipoPagoCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Inventario_Tbl_CuentasBancarias">
+          <End Role="Tbl_CuentasBancarias" Type="Self.Tbl_CuentasBancarias" Multiplicity="1" />
+          <End Role="Tbl_Inventario" Type="Self.Tbl_Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_CuentasBancarias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Inventario">
+              <PropertyRef Name="IdCuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoliacionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tbl_AsignacionInventario" EntityType="Self.Tbl_AsignacionInventario" />
+          <EntitySet Name="Tbl_CuentasBancarias" EntityType="Self.Tbl_CuentasBancarias" />
+          <EntitySet Name="Tbl_Inventario" EntityType="Self.Tbl_Inventario" />
+          <EntitySet Name="Tbl_NombresPersonal" EntityType="Self.Tbl_NombresPersonal" />
+          <EntitySet Name="Tbl_TipoPagoCuenta" EntityType="Self.Tbl_TipoPagoCuenta" />
+          <AssociationSet Name="FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias" Association="Self.FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias">
+            <End Role="Tbl_CuentasBancarias" EntitySet="Tbl_CuentasBancarias" />
+            <End Role="Tbl_AsignacionInventario" EntitySet="Tbl_AsignacionInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AsignacionInventario_Tbl_NombresPersonal" Association="Self.FK_Tbl_AsignacionInventario_Tbl_NombresPersonal">
+            <End Role="Tbl_NombresPersonal" EntitySet="Tbl_NombresPersonal" />
+            <End Role="Tbl_AsignacionInventario" EntitySet="Tbl_AsignacionInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta" Association="Self.FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta">
+            <End Role="Tbl_TipoPagoCuenta" EntitySet="Tbl_TipoPagoCuenta" />
+            <End Role="Tbl_CuentasBancarias" EntitySet="Tbl_CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Inventario_Tbl_CuentasBancarias" Association="Self.FK_Tbl_Inventario_Tbl_CuentasBancarias">
+            <End Role="Tbl_CuentasBancarias" EntitySet="Tbl_CuentasBancarias" />
+            <End Role="Tbl_Inventario" EntitySet="Tbl_Inventario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoliacionModelStoreContainer" CdmEntityContainer="FoliacionEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FoliacionModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_AsignacionInventario">
+            <EntityTypeMapping TypeName="FoliacionModel.Tbl_AsignacionInventario">
+              <MappingFragment StoreEntitySet="Tbl_AsignacionInventario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdBanco" ColumnName="IdBanco" />
+                <ScalarProperty Name="IdNombrePersona" ColumnName="IdNombrePersona" />
+                <ScalarProperty Name="FoliosAsignados" ColumnName="FoliosAsignados" />
+                <ScalarProperty Name="FolioInicial" ColumnName="FolioInicial" />
+                <ScalarProperty Name="FolioFinal" ColumnName="FolioFinal" />
+                <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_CuentasBancarias">
+            <EntityTypeMapping TypeName="FoliacionModel.Tbl_CuentasBancarias">
+              <MappingFragment StoreEntitySet="Tbl_CuentasBancarias">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombreBanco" ColumnName="NombreBanco" />
+                <ScalarProperty Name="Abreviatura" ColumnName="Abreviatura" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="IdTipoPagoCuenta" ColumnName="IdTipoPagoCuenta" />
+                <ScalarProperty Name="EstadoCuenta" ColumnName="EstadoCuenta" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Inventario">
+            <EntityTypeMapping TypeName="FoliacionModel.Tbl_Inventario">
+              <MappingFragment StoreEntitySet="Tbl_Inventario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCuentaBancaria" ColumnName="IdCuentaBancaria" />
+                <ScalarProperty Name="FormasDisponibles" ColumnName="FormasDisponibles" />
+                <ScalarProperty Name="UltimoFolioInventario" ColumnName="UltimoFolioInventario" />
+                <ScalarProperty Name="UltimoFolioQuincena" ColumnName="UltimoFolioQuincena" />
+                <ScalarProperty Name="EstimadoMeses" ColumnName="EstimadoMeses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_NombresPersonal">
+            <EntityTypeMapping TypeName="FoliacionModel.Tbl_NombresPersonal">
+              <MappingFragment StoreEntitySet="Tbl_NombresPersonal">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombrePersonal" ColumnName="NombrePersonal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_TipoPagoCuenta">
+            <EntityTypeMapping TypeName="FoliacionModel.Tbl_TipoPagoCuenta">
+              <MappingFragment StoreEntitySet="Tbl_TipoPagoCuenta">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

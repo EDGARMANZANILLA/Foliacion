@@ -119,6 +119,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BuscadorController.cs" />
+    <Compile Include="Controllers\FoliacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,6 +134,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\InventarioStyle.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -278,6 +281,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Foliacion\Index.cshtml" />
+    <Content Include="Views\Foliacion\Inventario.cshtml" />
+    <Content Include="Views\Foliacion\Foliar.cshtml" />
+    <Content Include="Views\Foliacion\Refoliar.cshtml" />
+    <Content Include="Views\Buscador\Cheques.cshtml" />
+    <Content Include="Views\Buscador\ChequesCancelados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,6 +302,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAP.Foliacion.Entidades\DAP.Foliacion.Entidades.csproj">
+      <Project>{eae2f00e-5f9e-4c54-9ff3-c9ff8892c489}</Project>
+      <Name>DAP.Foliacion.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAP.Foliacion.Negocio\DAP.Foliacion.Negocio.csproj">
+      <Project>{5a4fe05c-06b1-4587-b0c7-7982bcb7cfae}</Project>
+      <Name>DAP.Foliacion.Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
