@@ -12,9 +12,8 @@ namespace DAP.Foliacion.Datos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+
     using DAP.Foliacion.Entidades;
-    using System.Data.Objects.DataClasses;
-    using System.Linq;
 
     public partial class FoliacionEntities : DbContext
     {

@@ -1,0 +1,96 @@
+﻿@model List<PruebaNAV.Modelos.InventariosModel>
+
+    @{
+        ViewBag.Icono = "fas fa-boxes";
+        ViewBag.Title = "Inventario";
+
+    }
+
+    <head>
+        <link rel="stylesheet" href="~/Content/InventarioStyle.css">
+    </head>
+
+    <section>
+        <div class="row text-center">
+            <div class="col-4 ">
+                <p>Descargar Reporte de Inventario de Formas</p>
+            </div>
+
+            <div class="col-4">
+
+                <p>Ajustar Inventario de Formas</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class=" col-4 text-center">
+                <button type="button" class="btn btn-success">Descargar</button>
+            </div>
+
+            <div class=" col-4 text-center ">
+
+                <button type="button" class="btn btn-success"> Ajustar   </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <section class="margenSection">
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="tabla">
+                        <tr>
+                            <th>Id</th>
+                            <th>Cuenta Bancaria</th>
+                            <th>Formas disponibles</th>
+                            <th>Ultimo folio de inventario</th>
+                            <th>Ultimo folio de quincena</th>
+                            <th>Estimado de meses</th>
+                            <th>
+
+                            </th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+   
+
+
+                        @foreach (var modelo in Model)
+                        {
+                            <tr>
+                                <td>@modelo.Id</td>
+                                <td>@modelo.NombreBanco</td>
+                                <td>@modelo.FormasDisponibles</td>
+                                <td>@modelo.UltimoFolioInventario</td>
+                                <td>@modelo.UltimoFolioQuincena</td>
+                                <td>@modelo.EstimadoMeses</td>
+                                <th>
+                                    <button type="button" class="btn btn-success">Agregar</button>
+                                </th>
+
+                            </tr>
+
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+

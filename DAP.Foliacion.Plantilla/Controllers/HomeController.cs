@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DAP.Foliacion.Negocio;
+using DAP.Foliacion.Negocios;
 using DAP.Foliacion.Entidades;
 
 namespace PruebaNAV.Controllers
@@ -12,7 +12,7 @@ namespace PruebaNAV.Controllers
     {
         public ActionResult Index()
         {
-            var a = PruebaDeNegocio.ObtenerTodasCuentas();
+           // var a = PruebaDeNegocio.ObtenerTodasCuentas();
 
             return View();
         }

@@ -125,6 +125,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\InventariosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -290,7 +291,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -308,9 +308,9 @@
       <Project>{eae2f00e-5f9e-4c54-9ff3-c9ff8892c489}</Project>
       <Name>DAP.Foliacion.Entidades</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAP.Foliacion.Negocio\DAP.Foliacion.Negocio.csproj">
-      <Project>{5a4fe05c-06b1-4587-b0c7-7982bcb7cfae}</Project>
-      <Name>DAP.Foliacion.Negocio</Name>
+    <ProjectReference Include="..\DAP.Foliacion.Negocios\DAP.Foliacion.Negocios.csproj">
+      <Project>{9b61d3c2-b3dd-4994-a114-a1a881cabb24}</Project>
+      <Name>DAP.Foliacion.Negocios</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
