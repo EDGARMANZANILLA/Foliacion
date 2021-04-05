@@ -1,96 +1,440 @@
 ﻿@model List<PruebaNAV.Modelos.InventariosModel>
 
-    @{
-        ViewBag.Icono = "fas fa-boxes";
-        ViewBag.Title = "Inventario";
+@{
+    ViewBag.Icono = "fas fa-boxes";
+    ViewBag.Title = "Inventario";
+    String NombreBanco = "d";
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/InventarioStyle.css">
+</head>
+
+<section>
+    <div class="row text-center">
+        <div class="col-4 ">
+            <p>Descargar Reporte de Inventario de Formas</p>
+        </div>
+
+        <div class="col-4">
+
+            <p>Ajustar Inventario de Formas</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class=" col-4 text-center">
+            <button type="button" class="btn btn-success">Descargar</button>
+        </div>
+
+        <div class=" col-4 text-center ">
+
+            <button type="button" class="btn btn-success"> Ajustar   </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+
+
+<section class="margenSection">
+    <div class="row">
+        <div class="col">
+            <table id="tbProducto" class="table table-striped table-bordered table-hover">
+                <thead class="tabla">
+                    <tr>
+                        <th>Id</th>
+                        <th>Cuenta Bancaria</th>
+                        <th>Formas disponibles</th>
+                        <th>Ultimo folio de inventario</th>
+                        <th>Ultimo folio de quincena</th>
+                        <th>Estimado de meses</th>
+                        <th>
+
+                        </th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                     @foreach (var modelo in Model)
+                      {
+                        <tr>
+                            <td>@modelo.Id</td>
+                            <td>@modelo.NombreBanco</td>
+                            <td>@modelo.FormasDisponibles</td>
+                            <td>@modelo.UltimoFolioInventario</td>
+                            <td>@modelo.UltimoFolioQuincena</td>
+                            <td>@modelo.EstimadoMeses</td>
+                            <th>
+                                <button type="button" class="agregar btn btn-success" data-toggle="modal" data-target="#staticBackdrop" >Agregar</button>
+                            </th>
+
+                        </tr>
+
+ 
+                      }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal para ingresar Nuevos Folios -->
+<section class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+
+                <section >
+
+                    <div class="row text-center">
+                        <div class="offset-1 col-11 text-center">
+                            <h5 class="modal-title" id="staticBackdropLabel"> Ingresar Nuevas Formas de Pago para: </h5>
+                        </div>
+                    </div>
+          
+
+
+              
+            
+
+                </section>
+
+
+
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+            </div>
+            <div class="modal-body">
+
+                <div class="col-12">
+                    <div class="text-center">
+                        <h3 class="text-capitalize" id="Banco"></h3>
+                    </div>
+
+                </div>
+
+                <br />
+                <br />
+
+
+                <section>
+                    <div class="row">
+                        <div class="col-5 text-center"  >
+                            <p>Folio Inicial</p>
+                        </div>
+
+                        <div class="col-7 text-center" >
+
+                            <p>Folio Final</p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <input type="number" id="FInicial" placeholder="Ingresar Folio Inicial" class="text-center" />
+                        </div>
+
+                        <div class=" col-5 text-center ">
+
+                            <input type="number" id="FFinal" placeholder="Ingresar Folio Final" class="text-center" />
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+
+       
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" onclick="Cerrar()">Close</button>
+
+
+                <button id="Validar" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#Confirmar" style="display:none" >
+                    Agregar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- Modal de confirmacion -->
+<section class="modal fade" id="Confirmar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+
+
+                <section class="col-12">
+                    <div class="row text-center">
+                        <div class="offset-1 col-11 text-center">
+                            <h5 class="modal-title" id="staticBackdropLabel"> Autorizar Guardado Para </h5>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class=" col-12 text-center"  >
+                            <h3 class="text-capitalize text-center" id="ConfirmacionBanco" ></h3>
+                        </div>
+
+                    </div>
+
+
+
+
+                </section>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+
+
+
+
+            </div>
+
+
+
+            <div id="TextoConfrimacion" class="modal-body">
+               
+
+                
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" onclick="GuardarFolios()">Guardar</button>
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+    //Le envia datos a los modales con su respectiva informacion
+    $(document).ready(function () {
+
+
+        $(".agregar").click(function () {
+
+            //valores obtendra el dato del td por posciones [0]
+            var valores = $(this).parents("tr").find("td")[1].innerHTML;
+            console.log(valores);
+
+
+            document.getElementById("Banco").innerHTML = valores.toString();
+
+
+            document.getElementById("ConfirmacionBanco").innerHTML = valores.toString();
+
+
+
+
+
+       
+       
+           
+           // alert(valores);
+
+        });
+
+    });
+
+
+
+
+
+
+    //Verifica que el usuario escriba en los inputs de los folios 
+
+    let FolioInicial = null;
+    let FolioFinal = null;
+    let TotalFolios = null;
+
+
+
+    let $FIncial = document.getElementById("FInicial")
+    let $FFinal = document.getElementById("FFinal")
+
+    let timeout
+
+    //El evento lo puedes reemplazar con keyup, keypress y el tiempo a tu necesidad
+    //Escuchador para el input de Folio de inicio
+    $FIncial.addEventListener('keyup', () => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+
+            FolioInicial = document.getElementById("FInicial").value;
+            console.log(FolioInicial);
+
+
+            //Aplica para cuando el usuario cambie solo el Folio inicial
+            TotalFolios = (FolioFinal - FolioInicial) + 1;
+            console.log(TotalFolios);
+
+            if (TotalFolios > 1) {
+                document.getElementById("Validar").style.display = "block"
+
+
+
+                document.getElementById("TextoConfrimacion").innerHTML = "Se Insertaran " + " " + TotalFolios + " " + "Nuevos Folios" + "<br/>" + "Donde el Folio Inicial es:" + " " + FolioInicial + " " + "y" + " " + "Folio Final es" + " " + FolioFinal + "<br/>" + "¿ESTA SEGURO DE ELLO?";
+
+
+
+            } else {
+                document.getElementById("Validar").style.display = "none"
+                //alert("Introduzca un numero mayor a 0");
+            }
+
+
+
+
+            clearTimeout(timeout)
+        }, 1000)
+    })
+
+
+ 
+
+     //Escuchador para el input de FolioFinal
+    $FFinal.addEventListener('keydown', () => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+
+            FolioFinal = document.getElementById("FFinal").value;
+            console.log(FolioFinal);
+
+
+            TotalFolios = (FolioFinal - FolioInicial) + 1;
+            console.log(TotalFolios);
+
+            if (TotalFolios > 1) {
+                document.getElementById("Validar").style.display = "block"
+
+
+
+                document.getElementById("TextoConfrimacion").innerHTML = "Se Insertaran " + " " + TotalFolios + " " + "Nuevos Folios" + "<br/>" + "Donde el Folio Inicial es:" + " " + FolioInicial + " " + "y" + " " + "Folio Final es" + " "+FolioFinal + "<br/>" + "¿ESTA SEGURO DE ELLO?";
+
+
+
+            } else
+            {
+                document.getElementById("Validar").style.display = "none"
+                alert("Introduzca un numero mayor a 0");
+            }
+            
+
+
+            clearTimeout(timeout)
+        }, 1000)
+    })
+
+
+
+
+    function GuardarFolios() {
+
+        let FIncial = document.getElementById("FInicial").value;
+        let FFinal = document.getElementById("FFinal").value;
+
+        let Total = (FFinal - FIncial) + 1;
+
+        if (FIncial != "") {
+
+            alert("Folio inicial" + " " + FIncial);
+
+        } else {
+            alert("Escriba un valor por lo menos");
+        }
 
     }
 
-    <head>
-        <link rel="stylesheet" href="~/Content/InventarioStyle.css">
-    </head>
 
-    <section>
-        <div class="row text-center">
-            <div class="col-4 ">
-                <p>Descargar Reporte de Inventario de Formas</p>
-            </div>
-
-            <div class="col-4">
-
-                <p>Ajustar Inventario de Formas</p>
-
-            </div>
-
-        </div>
+    function Cerrar()
+    {
 
 
-        <div class="row">
-            <div class=" col-4 text-center">
-                <button type="button" class="btn btn-success">Descargar</button>
-            </div>
+        alert("entre");
+        FolioInicial = null;
+        FolioFinal = null;
+        TotalFolios = null;
 
-            <div class=" col-4 text-center ">
+        $('#FInicial').val('');
+        $('#FFinal').val('');
 
-                <button type="button" class="btn btn-success"> Ajustar   </button>
-
-            </div>
-
-
-        </div>
-
-    </section>
+    }
+      
 
 
 
 
-
-    <section class="margenSection">
-        <div class="row">
-            <div class="col">
-                <table class="table table-striped table-bordered table-hover">
-                    <thead class="tabla">
-                        <tr>
-                            <th>Id</th>
-                            <th>Cuenta Bancaria</th>
-                            <th>Formas disponibles</th>
-                            <th>Ultimo folio de inventario</th>
-                            <th>Ultimo folio de quincena</th>
-                            <th>Estimado de meses</th>
-                            <th>
-
-                            </th>
+</script>
 
 
-
-                        </tr>
-                    </thead>
-                    <tbody>
-   
-
-
-                        @foreach (var modelo in Model)
-                        {
-                            <tr>
-                                <td>@modelo.Id</td>
-                                <td>@modelo.NombreBanco</td>
-                                <td>@modelo.FormasDisponibles</td>
-                                <td>@modelo.UltimoFolioInventario</td>
-                                <td>@modelo.UltimoFolioQuincena</td>
-                                <td>@modelo.EstimadoMeses</td>
-                                <th>
-                                    <button type="button" class="btn btn-success">Agregar</button>
-                                </th>
-
-                            </tr>
-
-                        }
-
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </section>
 
