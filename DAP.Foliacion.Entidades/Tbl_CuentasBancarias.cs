@@ -28,6 +28,7 @@ namespace DAP.Foliacion.Entidades
         public bool EstadoCuenta { get; set; }
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<System.DateTime> FechaBaja { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         public virtual ICollection<Tbl_AsignacionInventario> Tbl_AsignacionInventario { get; set; }
         public virtual Tbl_TipoPagoCuenta Tbl_TipoPagoCuenta { get; set; }

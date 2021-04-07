@@ -49,14 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model1.Context.cs">
-      <DependentUpon>Model1.Context.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Designer.cs">
-      <DependentUpon>Model1.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio.cs" />
@@ -77,17 +77,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAP.Foliacion.Entidades\DAP.Foliacion.Entidades.csproj">
+      <Project>{eae2f00e-5f9e-4c54-9ff3-c9ff8892c489}</Project>
+      <Name>DAP.Foliacion.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DAP.Foliacion.Entidades\DAP.Foliacion.Entidades.csproj">
-      <Project>{eae2f00e-5f9e-4c54-9ff3-c9ff8892c489}</Project>
-      <Name>DAP.Foliacion.Entidades</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

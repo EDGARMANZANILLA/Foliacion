@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FoliacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FoliacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -39,6 +39,7 @@
           <Property Name="EstadoCuenta" Type="bit" Nullable="false" />
           <Property Name="FechaCreacion" Type="date" Nullable="false" />
           <Property Name="FechaBaja" Type="date" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_Inventario">
           <Key>
@@ -49,7 +50,9 @@
           <Property Name="FormasDisponibles" Type="int" Nullable="false" />
           <Property Name="UltimoFolioInventario" Type="int" Nullable="false" />
           <Property Name="UltimoFolioQuincena" Type="int" Nullable="false" />
-          <Property Name="EstimadoMeses" Type="int" />
+          <Property Name="FormasQuincena1" Type="int" />
+          <Property Name="FormasQuincena2" Type="int" />
+          <Property Name="EstimadoMeses" Type="decimal" Precision="2" Scale="2" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_NombresPersonal">
@@ -138,7 +141,8 @@
             <End Role="Tbl_Inventario" EntitySet="Tbl_Inventario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FoliacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -178,6 +182,7 @@
           <Property Name="EstadoCuenta" Type="Boolean" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaBaja" Type="DateTime" Precision="0" />
+          <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Tbl_AsignacionInventario" Relationship="Self.FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias" FromRole="Tbl_CuentasBancarias" ToRole="Tbl_AsignacionInventario" />
           <NavigationProperty Name="Tbl_TipoPagoCuenta" Relationship="Self.FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta" FromRole="Tbl_CuentasBancarias" ToRole="Tbl_TipoPagoCuenta" />
           <NavigationProperty Name="Tbl_Inventario" Relationship="Self.FK_Tbl_Inventario_Tbl_CuentasBancarias" FromRole="Tbl_CuentasBancarias" ToRole="Tbl_Inventario" />
@@ -191,9 +196,11 @@
           <Property Name="FormasDisponibles" Type="Int32" Nullable="false" />
           <Property Name="UltimoFolioInventario" Type="Int32" Nullable="false" />
           <Property Name="UltimoFolioQuincena" Type="Int32" Nullable="false" />
-          <Property Name="EstimadoMeses" Type="Int32" />
-          <NavigationProperty Name="Tbl_CuentasBancarias" Relationship="Self.FK_Tbl_Inventario_Tbl_CuentasBancarias" FromRole="Tbl_Inventario" ToRole="Tbl_CuentasBancarias" />
+          <Property Name="FormasQuincena1" Type="Int32" />
+          <Property Name="FormasQuincena2" Type="Int32" />
+          <Property Name="EstimadoMeses" Type="Decimal" Precision="2" Scale="2" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tbl_CuentasBancarias" Relationship="Self.FK_Tbl_Inventario_Tbl_CuentasBancarias" FromRole="Tbl_Inventario" ToRole="Tbl_CuentasBancarias" />
         </EntityType>
         <EntityType Name="Tbl_NombresPersonal">
           <Key>
@@ -259,7 +266,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FoliacionEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FoliacionEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tbl_AsignacionInventario" EntityType="Self.Tbl_AsignacionInventario" />
           <EntitySet Name="Tbl_CuentasBancarias" EntityType="Self.Tbl_CuentasBancarias" />
@@ -288,7 +295,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FoliacionModelStoreContainer" CdmEntityContainer="FoliacionEntities">
+        <EntityContainerMapping StorageEntityContainer="FoliacionModelStoreContainer" CdmEntityContainer="FoliacionEntities2">
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="FoliacionModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -324,19 +331,22 @@
                 <ScalarProperty Name="EstadoCuenta" ColumnName="EstadoCuenta" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tbl_Inventario">
             <EntityTypeMapping TypeName="FoliacionModel.Tbl_Inventario">
               <MappingFragment StoreEntitySet="Tbl_Inventario">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdCuentaBancaria" ColumnName="IdCuentaBancaria" />
                 <ScalarProperty Name="FormasDisponibles" ColumnName="FormasDisponibles" />
                 <ScalarProperty Name="UltimoFolioInventario" ColumnName="UltimoFolioInventario" />
                 <ScalarProperty Name="UltimoFolioQuincena" ColumnName="UltimoFolioQuincena" />
+                <ScalarProperty Name="FormasQuincena1" ColumnName="FormasQuincena1" />
+                <ScalarProperty Name="FormasQuincena2" ColumnName="FormasQuincena2" />
                 <ScalarProperty Name="EstimadoMeses" ColumnName="EstimadoMeses" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

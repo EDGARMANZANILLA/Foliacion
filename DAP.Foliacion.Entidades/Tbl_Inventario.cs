@@ -19,14 +19,11 @@ namespace DAP.Foliacion.Entidades
         public int FormasDisponibles { get; set; }
         public int UltimoFolioInventario { get; set; }
         public int UltimoFolioQuincena { get; set; }
-        public Nullable<int> EstimadoMeses { get; set; }
+        public Nullable<int> FormasQuincena1 { get; set; }
+        public Nullable<int> FormasQuincena2 { get; set; }
+        public Nullable<decimal> EstimadoMeses { get; set; }
         public bool Activo { get; set; }
     
         public virtual Tbl_CuentasBancarias Tbl_CuentasBancarias { get; set; }
-
-        public virtual ICollection<Tbl_Inventario> Inventarios { get; set; }
-
-
-
     }
 }

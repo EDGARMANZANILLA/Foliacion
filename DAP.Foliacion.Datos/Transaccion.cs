@@ -7,12 +7,12 @@ namespace DAP.Foliacion.Datos
 {
     public class Transaccion : IDisposable
     {
-        private FoliacionEntities _contexto;
+        private FoliacionEntities2 _contexto;
         public Transaccion()
         {
-            _contexto = new FoliacionEntities();
+            _contexto = new FoliacionEntities2();
         }
-        internal FoliacionEntities Contexto
+        internal FoliacionEntities2 Contexto
         {
             get
             {

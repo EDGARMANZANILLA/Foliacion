@@ -10,7 +10,11 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/style.css">
-    <script src="~/Scripts/jquery-3.5.1.slim.min.js"></script>
+
+
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+
+    @*<script src="~/Scripts/jquery-3.5.1.slim.min.js"></script>*@
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
@@ -71,7 +75,7 @@
 
                 <li>
                     <a href="#pageSubmenu2" title="Pages2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <em class="fa fa-money-check-alt"></em>  
+                        <em class="fa fa-money-check-alt"></em>
                         FOLIACIÓN
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
@@ -86,7 +90,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
 
                 <li>
                     <a href="#pageSubmenu" title="Pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -117,7 +121,6 @@
 
         </nav>
         <!-- Fin de SideBart-->
-
         <!-- Inicio del Navbar  -->
         <div id="content">
 
@@ -161,28 +164,28 @@
             <!-- Inicio del Nombre del sistema-->
 
 
-           
+
 
 
             <section>
                 <div class="row">
-                    <div class="col" >
+                    <div class="col">
                         <p class="@ViewBag.Icono" style="margin-left: 30px; font-size: 1.4em;">&nbsp @ViewBag.Title</p>
                     </div>
 
                     <div class="col" style="text-align: right;">
-                    
+
                         <p class="fa fa-cube" style="margin-right:30px; font-size: 1.4em; color: #74BC7C;">&nbsp Foliación v01</p>
 
                     </div>
                 </div>
             </section>
 
-            
+
             @*<div class="row-cols-6 nombreSistema" style="margin-bottom: 0px;">
 
-                <em class="fa fa-cube" style="font-size: 1.4em; color:#74BC7C;">&nbsp Foliación v01</em>
-            </div>*@
+                    <em class="fa fa-cube" style="font-size: 1.4em; color:#74BC7C;">&nbsp Foliación v01</em>
+                </div>*@
 
 
             <!-- Fin del Nombre del sistema-->
@@ -196,7 +199,7 @@
                 @RenderBody()
             </div>
 
-           
+
 
 
 
@@ -212,7 +215,7 @@
     <footer class="footer">
 
 
-   
+
 
 
 
@@ -237,6 +240,7 @@
 
 
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 

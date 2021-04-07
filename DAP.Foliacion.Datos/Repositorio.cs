@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using DAP.Foliacion.Entidades;
 
 namespace DAP.Foliacion.Datos
 {
     public class Repositorio<TEntity> : IDisposable where TEntity : class
     {
-        private FoliacionEntities _contexto;
+        private FoliacionEntities2 _contexto;
 
         public Repositorio(Transaccion transaccion)
         {

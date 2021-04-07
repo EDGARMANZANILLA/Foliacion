@@ -288,6 +288,7 @@
     <Content Include="Views\Foliacion\Refoliar.cshtml" />
     <Content Include="Views\Buscador\Cheques.cshtml" />
     <Content Include="Views\Buscador\ChequesCancelados.cshtml" />
+    <Content Include="Views\Foliacion\Inventario_Ajustar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,7 +19,11 @@ namespace PruebaNAV.Modelos
 
         public int UltimoFolioQuincena { get; set; }
 
-        public Nullable<int> EstimadoMeses { get; set; }
+        public Nullable<int> FormasQuincena1 { get; set; }
+        
+        public Nullable<int> FormasQuincena2 { get; set; }
+
+        public Nullable<decimal> EstimadoMeses { get; set; }
 
     }
 }
