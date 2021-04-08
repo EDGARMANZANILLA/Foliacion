@@ -99,5 +99,33 @@ namespace DAP.Foliacion.Negocios
 
 
 
+        // codigo para Ajustar inventario
+        public static IEnumerable<Tbl_AsignacionPersonal> ObtenerPersonalActivo()
+        {
+            var transaccion = new Transaccion();
+
+            var repositorio = new Repositorio<Tbl_AsignacionPersonal>(transaccion);
+
+            var PersonalActivos = repositorio.ObtenerPorFiltro(x => x.Activo == true);
+
+
+            return PersonalActivos;
+        }
+
+
+
+        // 
+        public static IEnumerable<Tbl_AsignacionInventario> ObtenerInventarioAnualActivo(int anio)
+        {
+            var transaccion = new Transaccion();
+
+            var repositorio = new Repositorio<Tbl_AsignacionInventario>(transaccion);
+
+            var InventarioAnualActivos = repositorio.ObtenerPorFiltro(x => x.FechaAsignacion.Year == anio && x.Activo == true);
+
+
+            return InventarioAnualActivos;
+        }
+
     }
 }

@@ -28,9 +28,9 @@ namespace DAP.Foliacion.Datos
     
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Tbl_AsignacionInventario> Tbl_AsignacionInventario { get; set; }
+        public DbSet<Tbl_AsignacionPersonal> Tbl_AsignacionPersonal { get; set; }
         public DbSet<Tbl_CuentasBancarias> Tbl_CuentasBancarias { get; set; }
         public DbSet<Tbl_Inventario> Tbl_Inventario { get; set; }
-        public DbSet<Tbl_NombresPersonal> Tbl_NombresPersonal { get; set; }
         public DbSet<Tbl_TipoPagoCuenta> Tbl_TipoPagoCuenta { get; set; }
     }
 }

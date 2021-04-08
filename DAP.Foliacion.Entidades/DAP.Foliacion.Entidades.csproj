@@ -54,13 +54,13 @@
     <Compile Include="Tbl_AsignacionInventario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tbl_AsignacionPersonal.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tbl_CuentasBancarias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Tbl_Inventario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tbl_NombresPersonal.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Tbl_TipoPagoCuenta.cs">

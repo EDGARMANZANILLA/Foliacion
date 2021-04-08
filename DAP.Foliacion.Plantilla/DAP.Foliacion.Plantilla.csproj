@@ -125,7 +125,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\AsignacionInventarioModel.cs" />
     <Compile Include="Modelos\InventariosModel.cs" />
+    <Compile Include="Modelos\ListaAsignancionInventarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

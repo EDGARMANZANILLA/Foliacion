@@ -1,1 +1,170 @@
-﻿<h1> hola a ajustar </h1>
+﻿@{
+    ViewBag.Icono = "fas fa-boxes";
+    ViewBag.Title = "Inventario";
+
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/InventarioStyle.css">
+</head>
+
+<section class="card">
+    <br />
+
+    <h2 class="text-center"> Asignar formas de cheques </h2>
+
+    <div class="row">
+
+        <div class=" offset-md-3 col-md-2 offset-sm-0 col-sm-12">
+            <h4 class="text-md-right text-sm-left"> Asignar banco</h4>
+        </div>
+
+        <div class=" col-md-4  col-sm-12 ">
+            <div class="form-group">
+                <label>&nbsp Selecciona un banco:</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="offset-md-3  col-md-2  offset-sm-0  col-sm-12">
+            <h4 class="text-md-right text-sm-left" ">Asignar a:</h4>
+        </div>
+
+        <div class="col-md-4  col-sm-12 ">
+            <div class="form-group">
+                <label>&nbsp Seleccione una persona:</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- **************************************************************************** --->
+
+    <h2 class="text-center">Asignar numeros de folios</h2>
+
+
+    <div class="row">
+        <div class="offset-md-3 col-md-3 text-md-center    offset-sm-0  col-sm-6 col-6">
+            <p>Folio Inicial</p>
+        </div>
+
+        <div class="col-md-3 text-md-center    offset-sm-0  col-sm-6 col-6">
+
+            <p>Folio Final</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="offset-md-3 col-md-3 text-md-center    offset-sm-0  col-sm-6 text-sm-left col-6">
+            <input type="number" id="FInicial" placeholder="Ingresar Folio Inicial" class="text-center" />
+        </div>
+
+        <div class="col-md-3 text-md-center    offset-sm-0  col-sm-5 text-sm-center col-6">
+
+            <input type="number" id="FFinal" placeholder="Ingresar Folio Final" class="text-center" />
+
+        </div>
+
+    </div>
+
+
+    <br />
+
+    <div class="row">
+
+        <div class="col-12 text-center">
+            <a class="btn btn-success">&nbsp Ajustar &nbsp</a>
+        </div>
+
+    </div>
+
+    <br />
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Generacion de tablas (La tabla se debe filtrar por año)-->
+<section   style="margin-top: 130px;">
+    <div class="row">
+        <div class="col">
+            <table id="tbProducto" class="table table-striped table-bordered table-hover">
+                <thead class="tabla">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre Banco</th>
+                        <th>Nombre de Persona</th>
+                        <th>Folios Asignados</th>
+                        <th>Folio Inicial</th>
+                        <th>Folio Final</th>
+                        <th>Fecha Asignacion</th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    @*@foreach (var modelo in Model)
+                    {
+                        <tr>
+                            <td>@modelo.Id</td>
+                            <td>@modelo.NombreBanco</td>
+                            <td>@modelo.FormasDisponibles</td>
+                            <td>@modelo.UltimoFolioInventario</td>
+                            <td>@modelo.UltimoFolioQuincena</td>
+                            <td>@modelo.FormasQuincena1</td>
+                            <td>@modelo.FormasQuincena2</td>
+                            <td>@modelo.EstimadoMeses</td>
+                            <th>
+                                <button type="button" class="agregar btn btn-success" data-toggle="modal" data-target="#staticBackdrop">Agregar</button>
+                            </th>
+
+                        </tr>
+
+
+                    }*@
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+

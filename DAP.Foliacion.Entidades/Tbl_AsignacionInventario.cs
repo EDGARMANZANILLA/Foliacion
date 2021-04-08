@@ -21,8 +21,9 @@ namespace DAP.Foliacion.Entidades
         public int FolioInicial { get; set; }
         public int FolioFinal { get; set; }
         public System.DateTime FechaAsignacion { get; set; }
+        public bool Activo { get; set; }
     
+        public virtual Tbl_AsignacionPersonal Tbl_AsignacionPersonal { get; set; }
         public virtual Tbl_CuentasBancarias Tbl_CuentasBancarias { get; set; }
-        public virtual Tbl_NombresPersonal Tbl_NombresPersonal { get; set; }
     }
 }

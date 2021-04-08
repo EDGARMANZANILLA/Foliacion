@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="989426b1c03340c9b46396982548d1d8" Name="Diagram1">
-        <EntityTypeShape EntityType="FoliacionModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoliacionModel.Tbl_AsignacionInventario" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoliacionModel.Tbl_CuentasBancarias" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoliacionModel.Tbl_Inventario" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoliacionModel.Tbl_NombresPersonal" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FoliacionModel.Tbl_TipoPagoCuenta" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="FoliacionModel.FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias" ManuallyRouted="false" />
-        <AssociationConnector Association="FoliacionModel.FK_Tbl_AsignacionInventario_Tbl_NombresPersonal" ManuallyRouted="false" />
-        <AssociationConnector Association="FoliacionModel.FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta" ManuallyRouted="false" />
-        <AssociationConnector Association="FoliacionModel.FK_Tbl_Inventario_Tbl_CuentasBancarias" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FoliacionModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="8.125" />
+        <EntityTypeShape EntityType="FoliacionModel.Tbl_AsignacionInventario" Width="1.5" PointX="8.25" PointY="4.375" />
+        <EntityTypeShape EntityType="FoliacionModel.Tbl_AsignacionPersonal" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="FoliacionModel.Tbl_CuentasBancarias" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="FoliacionModel.Tbl_Inventario" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="FoliacionModel.Tbl_TipoPagoCuenta" Width="1.5" PointX="0.75" PointY="5" />
+        <AssociationConnector Association="FoliacionModel.FK_Tbl_AsignacionInventario_Tbl_AsignacionPersonal" />
+        <AssociationConnector Association="FoliacionModel.FK_Tbl_AsignacionInventario_Tbl_CuentasBancarias" />
+        <AssociationConnector Association="FoliacionModel.FK_Tbl_CuentasBancarias_Tbl_TipoPagoCuenta" />
+        <AssociationConnector Association="FoliacionModel.FK_Tbl_Inventario_Tbl_CuentasBancarias" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
