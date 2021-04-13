@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<PruebaNAV.Modelos.AsignacionInventarioModel>
+@{
     ViewBag.Icono = "fas fa-boxes";
     ViewBag.Title = "Inventario";
 
@@ -23,12 +24,19 @@
         <div class=" col-md-4  col-sm-12 ">
             <div class="form-group">
                 <label>&nbsp Selecciona un banco:</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control" id="SeleccionBanco">
+                    <option value="" disabled selected>&nbsp Selecciona un banco:</option>
+                    @foreach (var banco in ViewBag.NombreBancos)
+                    {
+
+
+                        <option>@banco  </option>
+
+
+                    }
+
+
+
                 </select>
             </div>
         </div>
@@ -40,18 +48,24 @@
     <div class="row">
 
         <div class="offset-md-3  col-md-2  offset-sm-0  col-sm-12">
-            <h4 class="text-md-right text-sm-left" ">Asignar a:</h4>
+            <h4 class="text-md-right text-sm-left">Asignar a:</h4>
         </div>
 
         <div class="col-md-4  col-sm-12 ">
             <div class="form-group">
                 <label>&nbsp Seleccione una persona:</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select class="form-control" id="SeleccionPersona">
+                    <option value="" disabled selected>&nbsp Seleccione una persona:</option>
+                    @foreach (var persona in ViewBag.NombrePersonal)
+                    {
+
+
+                        <option>@persona  </option>
+
+
+                    }
+
+
                 </select>
             </div>
         </div>
@@ -80,13 +94,14 @@
 
 
     <div class="row">
-        <div class="offset-md-3 col-md-3 text-md-center    offset-sm-0  col-sm-6 text-sm-left col-6">
-            <input type="number" id="FInicial" placeholder="Ingresar Folio Inicial" class="text-center" />
+        <div class="offset-md-3 col-md-3 text-md-center    offset-sm-0  col-sm-6 text-sm-left col-5">
+
+            <h3 id="FInicial" class="text-center" sty>&nbsp F.Inicial &nbsp</h3>
         </div>
 
-        <div class="col-md-3 text-md-center    offset-sm-0  col-sm-5 text-sm-center col-6">
+        <div class="col-md-3 text-md-center    offset-sm-0  col-sm-5 text-sm-center col-7">
 
-            <input type="number" id="FFinal" placeholder="Ingresar Folio Final" class="text-center" />
+            <input type="number" id="FFinal" placeholder="Ingresar Folio Final" class="text-center offset-sm-1 col-sm-6 col-md-7" />
 
         </div>
 
@@ -98,7 +113,7 @@
     <div class="row">
 
         <div class="col-12 text-center">
-            <a class="btn btn-success">&nbsp Ajustar &nbsp</a>
+            <a id="Ajusta" class="btn btn-success" data-toggle="modal"  onclick="Validar()">&nbsp Ajustar &nbsp</a>
         </div>
 
     </div>
@@ -107,6 +122,8 @@
 
 
 </section>
+
+
 
 
 
@@ -119,9 +136,9 @@
 
 
 <!-- Generacion de tablas (La tabla se debe filtrar por año)-->
-<section   style="margin-top: 130px;">
-    <div class="row">
-        <div class="col">
+<section >
+
+        <div style="overflow-x:auto;">
             <table id="tbProducto" class="table table-striped table-bordered table-hover">
                 <thead class="tabla">
                     <tr>
@@ -132,7 +149,7 @@
                         <th>Folio Inicial</th>
                         <th>Folio Final</th>
                         <th>Fecha Asignacion</th>
-                        
+
 
                     </tr>
                 </thead>
@@ -140,31 +157,324 @@
 
 
 
-                    @*@foreach (var modelo in Model)
+                    @foreach (var modelo in Model)
                     {
                         <tr>
                             <td>@modelo.Id</td>
                             <td>@modelo.NombreBanco</td>
-                            <td>@modelo.FormasDisponibles</td>
-                            <td>@modelo.UltimoFolioInventario</td>
-                            <td>@modelo.UltimoFolioQuincena</td>
-                            <td>@modelo.FormasQuincena1</td>
-                            <td>@modelo.FormasQuincena2</td>
-                            <td>@modelo.EstimadoMeses</td>
-                            <th>
-                                <button type="button" class="agregar btn btn-success" data-toggle="modal" data-target="#staticBackdrop">Agregar</button>
-                            </th>
+                            <td>@modelo.NombrePersona</td>
+                            <td>@modelo.FoliosAsignados</td>
+                            <td>@modelo.FolioInicial</td>
+                            <td>@modelo.FolioFinal</td>
+                            <td>@modelo.FechaAsignacion</td>
 
                         </tr>
 
 
-                    }*@
+                    }
 
 
                 </tbody>
             </table>
         </div>
-    </div>
+
 
 </section>
 
+
+
+
+
+
+
+
+
+<!-- Modal de confirmacion -->
+<section class="modal fade" id="Confirmar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+
+
+                <section class="col-11">
+                    <div class="row text-center">
+                        <div class="offset-1 col-11 ">
+                            <h5 class="modal-title" id="staticBackdropLabel"> Autorizar Ajuste para </h5>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                </section>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+
+
+
+            </div>
+
+
+
+            <section class="modal-body">
+                <div class="row" >
+                    <div class=" col-12 text-center">
+                        <h3 class="text-capitalize text-center" id="ConfirmacionBanco"></h3>
+                    </div>
+
+                </div>
+
+
+                <div id="TextoConfrimacion">
+                    LLENE TODOS LOS DATOS ANTERIORES POR FAVOR!
+
+                </div>
+
+
+            </section>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" onclick="Ajustar()"> Guardar </button>
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<script>
+    let seleccionBanco = null;
+    let seleccionPersona = null;
+
+    let FolioInicial = null;
+    let TotalFolios = null;
+    let FolioFinal = null;
+    let Persona = null;
+
+
+    //selecciona la opcion del banco
+    let $selectBanco = document.getElementById('SeleccionBanco');
+    $selectBanco.addEventListener('change',
+        function () {
+            seleccionBanco = this.options[$selectBanco.selectedIndex];
+            document.getElementById("ConfirmacionBanco").innerHTML = seleccionBanco.value;
+            console.log(seleccionBanco.value + ': ' + seleccionBanco.text);
+
+            //Va a buscar los numeros de folios por banco por GET
+            let banco = seleccionBanco.value;
+
+            //la opcion 2 devuelve el Folio Inicial para el AJuste
+            let EnviarDatos = "{'bancoSeleccionado':'" + banco + "', 'opcion':'2'}";
+
+          //  { bancoSeleccionado: seleccionBanco.value } ,
+
+            console.log(EnviarDatos);
+
+            var motivo = seleccionBanco.value;
+
+
+
+            $.ajax({
+
+                url: '@Url.Action("ObtenerFoliosActivos", "Foliacion")',
+                data: EnviarDatos,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+
+                    console.log("todo chido" + " " + result);
+
+                    FolioInicial = result;
+
+                    document.getElementById("FInicial").innerHTML = result;
+
+                },
+                error: function (result)
+                {
+                    //alert("ERROR al cargar los Folios del banco");
+                    document.getElementById("FInicial").innerHTML = "ERROR al cargar";
+                    document.getElementById("FInicial").className = "btn-danger";
+
+
+
+                }
+            });
+
+
+
+        });
+
+    //selecciona la opcion de la persona
+    let $selectPersona = document.getElementById('SeleccionPersona');
+    $selectPersona.addEventListener('change',
+        function () {
+            seleccionPersona = this.options[$selectPersona.selectedIndex];
+            //  document.getElementById("ConfirmacionBanco").innerHTML = seleccionPersona.toString();
+            Persona = seleccionPersona.value;
+            console.log(Persona);
+        }
+    );
+
+
+
+
+
+
+
+
+
+
+
+    function Validar()
+    {
+        console.log("iguales");
+        //console.log(TotalFolios);
+        console.log("FI" + FolioInicial);
+        console.log("FF" + FolioFinal);
+        console.log("Persona" + Persona);
+
+        console.log(" ");
+      
+        // let FolioInicial = document.getElementById("FInicial").value;
+        FolioFinal = document.getElementById("FFinal").value;
+
+        if (FolioInicial == null || Persona == null || FolioFinal == "" ) {
+            console.log("entreeeee");
+
+            Swal.fire({
+                backdrop: true,
+                allowEnterKey: true,
+                icon: 'error',
+                title: 'Oops...',
+                text: 'LLENE TODOS LOS CAMPOS ANTERIORES'
+
+            }).then((result) => {
+                if (result.value) {
+                    //                    location.reload();
+
+                    $('#Confirmar').modal('hide')
+                }
+            })
+
+
+        }
+
+
+
+
+
+        if (FolioInicial != null && Persona != null && FolioFinal != "") {
+           
+
+            TotalFolios = (FolioFinal - FolioInicial) + 1;
+
+            console.log("diferentes");
+            console.log("FI" + FolioInicial);
+            console.log("FF" + FolioFinal);
+            console.log("Persona" + Persona);
+            console.log(TotalFolios);
+            console.log(" ");
+
+
+
+            if (FolioFinal >= FolioInicial) {
+
+
+                $('#Confirmar').modal('show')
+
+                document.getElementById("TextoConfrimacion").innerHTML = "Se Insertaran " + " " + TotalFolios + " " + "Nuevos Folios" + "<br/>" + "Donde el Folio Inicial es:" + " " + FolioInicial + " " + "y" + " " + "Folio Final es" + " " + FolioFinal + "<br/>" + "¿ESTA SEGURO DE ELLO?";
+
+            } else
+            {
+                Swal.fire({
+                    backdrop: true,
+                    allowEnterKey: true,
+                    icon: 'error',
+                    title: 'F.Final no es Valido',
+                    text: 'Verifique que el F.Final sea mayor al F.Inicial'
+
+                }).then((result) => {
+                    if (result.value) {
+                        //                    location.reload();
+
+                        $('#Confirmar').modal('hide')
+                    }
+                })
+
+            }
+         
+
+
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    function Ajustar() {
+
+
+     
+
+        console.log("FI"+ FolioInicial);
+        console.log("FF" +FolioFinal);
+        console.log("FT" + TotalFolios);
+
+
+            Swal.fire({
+                backdrop: true,
+                allowEnterKey: true,
+               
+                title: 'Oops...',
+                text: 'CORRECTO'
+
+            })
+
+
+
+        
+
+
+
+
+
+    }
+
+
+</script>

@@ -12,14 +12,14 @@
 </head>
 
 <section>
-    <div class="row text-center">
-        <div class="col-4 ">
-            <p>Descargar Reporte de Inventario de Formas</p>
+    <div class="row ">
+        <div class="offset-1 col-4 ">
+            <p style="text-align: justify;" >Descargar Reporte de Inventario de Formas</p>
         </div>
 
-        <div class="col-4">
+        <div class="offset-1 col-4">
 
-            <p>Ajustar Inventario de Formas</p>
+            <p style="text-align: justify;">Ajustar Inventario de Formas</p>
 
         </div>
 
@@ -27,13 +27,13 @@
 
 
     <div class="row">
-        <div class=" col-4 text-center">
+        <div class=" offset-2 offset-md-1 col-4 text-center">
             <button type="button" class="btn btn-success">Descargar</button>
         </div>
 
-        <div class=" col-4 text-center ">
+        <div class=" offset-1 col-4 col-md-3 text-center ">
 
-            <a type="button" class="btn btn-success" href="@Url.Action("Inventario_Ajustar", "Foliacion")">&nbsp  Ajustar  &nbsp</a>
+            <a type="button" class="btn btn-success" href="@Url.Action("Inventario_Ajustar", "Foliacion")">&nbsp  Ajustar &nbsp</a>
 
         </div>
 
@@ -49,7 +49,7 @@
 <!-- Generacion de tablas -->
 <section class="margenSection ">
     <div class="row">
-        <div class="col">
+        <div class="col" style="overflow-x:auto;">
             <table id="tbProducto" class="table table-striped table-bordered table-hover">
                 <thead class="tabla">
                     <tr>
@@ -130,9 +130,6 @@
           
 
 
-              
-            
-
                 </section>
 
 
@@ -174,7 +171,7 @@
 
                     <div class="row">
                         <div class="col-6 text-center">
-                            <input type="number" id="FInicial" placeholder="Ingresar Folio Inicial" class="text-center" />
+                            <h3 id="FInicial" class="text-center"> </h3>
                         </div>
 
                         <div class=" col-5 text-center ">
@@ -282,7 +279,7 @@
 
 <script>
     let banco = null;
-    // 
+    //
     let primerFolio = null;
     let segundoFolio = null;
 
@@ -305,14 +302,40 @@
 
             document.getElementById("ConfirmacionBanco").innerHTML = banco.toString();
 
+            //opcion1 devuelve el Ultimo Folio del inventario mas 1 para ser el folio inicial a ingresar 
+
+            let EnviarDatos = "{'bancoSeleccionado':'" + banco + "', 'opcion':'1'}";
+            console.log(EnviarDatos);
+
+            //Consulta el ultimo folio y lo pinta para no sea ingresado
+
+            $.ajax({
+
+                url: '@Url.Action("ObtenerFoliosActivos", "Foliacion")',
+                data: EnviarDatos,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+
+                    console.log("todo chido" + " " +result);
+
+                    document.getElementById("FInicial").innerHTML = result;
+
+                },
+                error: function (result)
+                {
+                    //alert("ERROR al cargar los Folios del banco");
+                    document.getElementById("FInicial").innerHTML = "ERROR al cargar";
+                    document.getElementById("FInicial").className = "btn-danger";
 
 
 
+                }
+            });
 
 
 
-
-           // alert(valores);
 
         });
 
@@ -356,7 +379,7 @@
 
             if (FolioInicial == primerFolio && FolioFinal >= segundoFolio) {
                 document.getElementById("Validar").style.display = "block"
-                
+
 
 
                 document.getElementById("TextoConfrimacion").innerHTML = "Se Insertaran " + " " + TotalFolios + " " + "Nuevos Folios" + "<br/>" + "Donde el Folio Inicial es:" + " " + FolioInicial + " " + "y" + " " + "Folio Final es" + " " + FolioFinal + "<br/>" + "¿ESTA SEGURO DE ELLO?";
@@ -367,24 +390,13 @@
                 document.getElementById("Validar").style.display = "none"
 
                 Swal.fire({
-                    backdrop: true,  
+                    backdrop: true,
                     allowEnterKey: true,
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Introduzca un numero IGUAL a: ' + primerFolio + ' en el FOLIO INICIAL Y                un numero IGUAL O MAYOR a: ' + segundoFolio + ' en el FOLIO FINAL'
 
                 })
-
-
-
-
-
-
-
-
-              
-
-
 
 
 
@@ -418,7 +430,7 @@
             if (FolioInicial == primerFolio &&  FolioFinal >= segundoFolio) {
                 document.getElementById("Validar").style.display = "block"
 
-         
+
 
 
                 document.getElementById("TextoConfrimacion").innerHTML = "Se Insertaran " + " " + TotalFolios + " " + "Nuevos Folios" + "<br/>" + "Donde el Folio Inicial es:" + " " + FolioInicial + " " + "y" + " " + "Folio Final es" + " "+FolioFinal + "<br/>" + "¿ESTA SEGURO DE ELLO?";
@@ -430,17 +442,17 @@
                 document.getElementById("Validar").style.display = "none"
 
                 Swal.fire({
-                    backdrop: true, 
+                    backdrop: true,
 
                     allowEnterKey: false,
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Introduzca un numero IGUAL a: ' + primerFolio + ' en el FOLIO INICIAL Y                un numero IGUAL O MAYOR a: ' + segundoFolio + ' en el FOLIO FINAL' 
+                    text: 'Introduzca un numero IGUAL a: ' + primerFolio + ' en el FOLIO INICIAL Y                un numero IGUAL O MAYOR a: ' + segundoFolio + ' en el FOLIO FINAL'
 
                 })
 
-                
-              
+
+
             }
 
 
@@ -457,8 +469,8 @@
         console.log("Total folio" + " " + TotalFolios);
 
         if (TotalFolios > 1) {
-        
-            
+
+
 
             let EnviarDatos = "{'Banco': '" + banco + "','finicial': '" + FolioInicial + "', 'ffinal': '" + FolioFinal + "', 'ftotal': '" + TotalFolios +"' }";
 
@@ -478,13 +490,13 @@
 
                     if (msg == true) {
                         Swal.fire({
-                            backdrop: true,  
+                            backdrop: true,
                             icon: 'success',
                             title: 'CORRECTO!',
                             allowEnterKey: true,
                             html: "<h3 class=text-uppercase > se guardo con exito el inventario para " + banco + "</h3>"
-                           
-                            
+
+
                         }).then((result) => {
                             if (result.value) {
                                 location.reload();
@@ -492,13 +504,13 @@
                         })
 
 
-                        
+
 
                     }
                     else
                     {
                         Swal.fire({
-                            backdrop: "true", 
+                            backdrop: "true",
                             allowEnterKey: "true",
                             icon: 'error',
                             title: 'Oops...',
@@ -508,7 +520,7 @@
                     }
 
 
-                  
+
                 },
                 error: function (result)
                 {

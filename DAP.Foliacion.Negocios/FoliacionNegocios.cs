@@ -22,6 +22,17 @@ namespace DAP.Foliacion.Negocios
 
             return InventariosActivos;
         }
+        public static IEnumerable<Tbl_Inventario> ObtenerInventarioPorBanco(int banco)
+        {
+            var transaccion = new Transaccion();
+
+            var repositorio = new Repositorio<Tbl_Inventario>(transaccion);
+
+            var InventariosActivos = repositorio.ObtenerPorFiltro(x => x.IdCuentaBancaria == banco && x.Activo == true);
+
+
+            return InventariosActivos;
+        }
 
 
         public static int ObtenerBanco(string banco)

@@ -16,8 +16,5 @@ namespace PruebaNAV.Modelos
         public int FolioFinal { get; set; }
         public System.DateTime FechaAsignacion { get; set; }
 
-
-
-
     }
 }

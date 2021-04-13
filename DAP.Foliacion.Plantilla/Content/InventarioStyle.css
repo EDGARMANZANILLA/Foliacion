@@ -22,9 +22,12 @@ button {
 
 
 .tabla {
-   
     text-align: center;
     background: #74BC7C;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
 }
 
 
@@ -32,3 +35,11 @@ button {
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #74BC7C;
 }
+
+
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
